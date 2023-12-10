@@ -21,9 +21,8 @@ const Body = () => {
 
         const json = await data.json();
         console.log(json?.data);
-        setListOfRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setfilterRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          
+        setListOfRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setfilterRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
     const OnlineStatus = useOnlineStatus();
@@ -40,16 +39,16 @@ const Body = () => {
 
                     console.log(searchText);
 
-                    filterRestaurant = ListOfRestaurant.filter((res) => (
+                    const filterList = ListOfRestaurant.filter((res) => (
                         res.info.name.toLowerCase().includes(searchText.toLowerCase())));
-                    setfilterRestaurant(filterRestaurant);
+                    setfilterRestaurant(filterList);
 
                     }}>Search</button>
 
             {/* data filter hoke 4star se above rating wale restaurant print hogye */}
                 <button className="m-4 px-4 py-2 bg-gray-400 rounded-lg" onClick={() => {
-                    const filterList = ListOfRestaurant.filter(res => (res.info.avgRating > 4));
-                    setListOfRestaurant(filterList); 
+                    const filterList = ListOfRestaurant.filter(res => (res.info.avgRating >= 4));
+                    setfilterRestaurant(filterList); 
                     console.log(filterList);    
                     }} >Top Rating Resturant</button>
             </div>
